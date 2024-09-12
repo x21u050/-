@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規登録画面</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        function saveData() {
+            const name = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+
+            localStorage.setItem('name', name);
+            localStorage.setItem('password', password);
+            localStorage.setItem('email', email);
+
+            const photo = document.getElementById('photo').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                localStorage.setItem('photo', reader.result);
+            }
+            if (photo) {
+                reader.readAsDataURL(photo);
+            }
+
+            return true;
+        }
+
+        function previewImage() {
+            const photo = document.getElementById('photo').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                document.getElementById('photoPreview').src = reader.result;
+                document.getElementById('photoLabel').textContent = '写真が選択されました';
+            }
+            if (photo) {
+                reader.readAsDataURL(photo);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form action="confirm_registration.html" method="get" enctype="multipart/form-data" onsubmit="return saveData()">
+            <label for="name">氏名:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="password">パスワード:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="email">メールアドレス:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="photo">顔写真:</label>
+            <label for="photo" class="custom-file-upload" id="photoLabel">
+                顔写真をアップロードしてください。
+            </label>
+            <input type="file" id="photo" name="photo" accept="image/*" required onchange="previewImage()">
+            <img id="photoPreview" src="#" alt="プレビュー画像" style="display: none; max-width: 100%; height: auto; margin-top: 10px;">
+
+            <button type="submit" class="button">確認画面</button>
+        </form>
+    </div>
+    <script>
+        // プレビュー画像の表示処理
+        document.getElementById('photo').addEventListener('change', function() {
+            const photoPreview = document.getElementById('photoPreview');
+            photoPreview.style.display = 'block';
+            previewImage();
+        });
+    </script>
+</body>
+</html>
