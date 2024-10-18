@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+/*login*/
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+form p {
+    margin: 15px 0;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #1E5F74;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #164d59;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-align: center;
+    color: white;
+    background-color: #1E5F74;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #164d59;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav .button {
+    margin: 0 10px;
+}
+
+/* カスタムファイル選択ボタンのスタイル */
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    background-color: #1E5F74;
+    color: white;
+    border-radius: 5px;
+}
+
+.custom-file-upload:hover {
+    background-color: #164d59;
+}
+/*imgge_list*/
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center; /*各ボタンを同じ高さに*/
+    gap: 10px; /* ボタン間のスペース */
+    margin-top: 20px;
+}
+
+.btn, .button, button {
+    flex: 1; /*ボタンを均等に配置*/
+    padding: 15px 20px;
+    text-align: center;
+    color: white;
+    background-color: #1E5F74;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover, .button:hover, button:hover {
+    background-color: #164d59;
+}

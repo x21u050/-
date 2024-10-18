@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <!-- BootstrapのCSSをCDNから読み込む -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .preview {
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: contain;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Upload Image</h2>
+        <form method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="text-center">
+                <img id="imagePreview" class="preview d-none" alt="Image Preview">
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">登録</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- BootstrapのJavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ファイル入力要素を取得する（Djangoフォーム内のinput[type="file"]をターゲットに）
+        const fileInput = document.querySelector('input[type="file"]');
+        const imagePreview = document.getElementById('imagePreview');
+
+        if (fileInput) {
+            fileInput.addEventListener('change', function() {
+                const file = this.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.classList.remove('d-none');
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.classList.add('d-none');
+                    imagePreview.src = "";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

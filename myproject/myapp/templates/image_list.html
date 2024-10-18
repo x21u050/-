@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ request.user.username }} さんのアップロード画像</title>
+    <!-- BootstrapのCSSをCDNから読み込む -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="bg-white p-4 rounded shadow-sm">
+            <h1 class="text-center mb-4">{{ request.user.username }} さんのアップロード画像</h1>
+            <ul>
+                {% for image in images %}
+                <li class="mb-2">
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}" width="100">
+                    <p>{{ image.title }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <!-- ボタンのレイアウト -->
+            <div class="d-flex justify-content-center gap-2 mt-4">
+                <form method="post" action="{% url 'upload_image' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">アップロード</button>
+                </form>
+                <form action="{% url 'home' %}">
+                    <button type="submit" class="btn btn-secondary">ホームに戻る</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- BootstrapのJavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
